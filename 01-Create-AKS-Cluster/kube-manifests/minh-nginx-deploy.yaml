@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minh-nginx-deploy
+  labels:
+    app: minh-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minh-nginx
+  template:
+    metadata:
+      labels:
+        app: minh-nginx
+    spec:
+      containers:
+      - name: minh-nginx
+        image: nginx:1.14.2
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+      
